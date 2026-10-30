@@ -23,7 +23,7 @@ export default function LinkCard({ link }: { link: Link }) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackClick(link.id)}
-      className="block w-full rounded-xl border border-zinc-200 bg-white px-5 py-4 text-center font-medium shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md active:translate-y-0 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-emerald-600"
+      className="block w-full rounded-2xl border border-white/70 bg-white/45 px-6 py-[18px] text-center text-[15px] font-semibold shadow-[0_4px_24px_-10px_rgba(150,80,40,0.25)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/65 hover:shadow-[0_8px_28px_-10px_rgba(150,80,40,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 active:translate-y-0 active:scale-[0.99] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_4px_24px_-10px_rgba(0,0,0,0.6)] dark:hover:bg-white/10"
     >
       {link.title}
     </a>
