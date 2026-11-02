@@ -10,7 +10,13 @@ export async function getDb(): Promise<Db | null> {
   if (!uri) return null;
 
   // 개발 모드 HMR로 모듈이 다시 로드돼도 연결을 재사용하도록 global에 캐시합니다.
-  globalForMongo._mongoClientPromise ??= new MongoClient(uri).connect();
+  // 연결에 실패하면 캐시를 비워 다음 요청에서 다시 시도합니다.
+  globalForMongo._mongoClientPromise ??= new MongoClient(uri)
+    .connect()
+    .catch((error) => {
+      globalForMongo._mongoClientPromise = undefined;
+      throw error;
+    });
   const client = await globalForMongo._mongoClientPromise;
   return client.db(process.env.MONGODB_DB ?? "linknamu");
 }
